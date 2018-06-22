@@ -44,9 +44,12 @@ to see the stock ticker symbol SPY.  Also navigate to
 ```
 http://localhost:6002
 ```
-to see the stock ticker symbol BX (Blackstone).  
-6. Enjoy watching streaming quotes 🎉 until the market closes which is 4pm New York Time (GMT-4).  
-7. Press Ctrl+C in the terminal to stop docker-compose when you're happy enough.  
+to see the stock ticker symbol BX (Blackstone).
+
+6. Enjoy watching streaming quotes 🎉 until the market closes which is 4pm New York Time (GMT-4).
+
+7. Press Ctrl+C in the terminal to stop docker-compose when you're happy enough.
+
 8. Run
 ```
 docker-compose down
@@ -55,10 +58,12 @@ to clean up.
 
 ## Running the tests
 1. Change directory to integration-tests in a terminal.
+
 2. Run
 ```
 npm install
 ```
+
 3. In the same directory, run
 ```
 npm run up
