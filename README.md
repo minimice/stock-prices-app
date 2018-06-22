@@ -8,6 +8,7 @@ Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (Team Cloud Lead @ 
 * Docker  
 * [Node 8.11.3](https://nodejs.org/en/download/)
 * A modern browser like Chrome
+* An enjoyment of looking at stocks!
 
 ## Quick start 🍕
 1. Clone this repo.  Contact [me](https://www.linkedin.com/in/cgl88/) to get an Intrinio account to work with live quotes, you will need this to update the Docker-compose file.
