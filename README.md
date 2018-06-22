@@ -59,7 +59,7 @@ docker-compose down
 ```
 to clean up.
 
-## Running the tests
+## Running the tests 💥
 1. Change directory to integration-tests in a terminal.
 
 2. Run
