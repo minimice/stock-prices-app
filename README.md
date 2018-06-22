@@ -53,6 +53,34 @@ docker-compose down
 ```
 to clean up.
 
+## Running the tests
+1. Change directory to integration tests in a terminal.
+2. Run
+```
+npm install
+```
+3. In the same directory, run
+```
+npm run up
+```
+to start docker-compose for the integration tests
+4. After all the services have started, which should take a few seconds, open up a new terminal window.
+5. Change directory to integration tests.
+6. Run
+```
+npm test
+```
+You should get a message saying
+```
+1 passing (1s)
+```
+7. If you are getting a connection error, then the services may not have finished starting.  Wait and try again.
+8. When you are done, run
+```
+npm run down
+```
+to clean up.
+
 ## Architecture 🏛
 The system is designed with durability (a fake SQS and a fake Elasticache using memcache), composability, high availability and real-time communication in mind.  The backend components are completely separate from the frontend and allows for interchangeability.
 The backend comprises of a producer which sends (last price) stock quotes (provided by Intrinio) to an SQS.  Consumers pull off this queue and posts the latest last price of a specific stock to a cache (memcached).  Stock specific servers running socket.io (operating over the websockets protocol) monitors the cache continuously and posts updates to connected clients when the timestamp of the last stock quote has changed.  Each front end client connects to a stock specific server and displays it to the user via the browser.
