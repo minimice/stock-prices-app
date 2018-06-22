@@ -1,2 +1,55 @@
 # stock-prices-app
-Real time streaming stock prices using the Intrinio SDK built using distributed architecture
+Real time streaming stock prices using the Intrinio SDK built using distributed architecture.
+
+Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (Team Cloud Lead @ Scania AB, Senior Software Engineer)
+
+## Pre-requisites
+* Docker account on dockerhub  
+* Docker  
+* Node
+* A modern browser like Chrome
+
+## Quick start
+1. Contact [me](https://www.linkedin.com/in/cgl88/) to get an Intrinio account to work with live quotes, you will need this to update the Docker-compose file.
+2. Update the Docker-compose file with credentials.
+```
+## Update the following two lines in the Docker-compose file ##
+- INTRINIO_USER=YOUR_USER_HERE
+- INTRINIO_PASSWORD=YOUR_PASSWORD_HERE
+```
+3. Run the following command from the root directory of the repo.
+```
+docker-compose up --build
+```
+4. The NYSE stock exchange opens at 9:30am (GMT-4) New York Time.  This is 2:30pm London time.  You will not get streaming quotes until then, but the application will still work.  Open up a new shell, and run
+```
+docker ps
+```
+You should now see 8 containers running.  These are
+```
+spy-stock-price-client
+bx-stock-price-client
+bx-stock-price-consumer
+spy-stock-price-consumer
+bx-stock-price-server
+spy-stock-price-server
+sqs
+memcached
+```
+5. If the stock markets have open, you should get streaming quotes.  If not check that your Intrinio account details are correct, and then run the Docker-compose file again.  Navigate to
+```
+http://localhost:6001
+```
+to see the stock ticker symbol SPY.  Navigate to
+```
+http://localhost:6002
+```
+to see the stock ticker symbol BX (Blackstone).
+6. Enjoy watching streaming quotes until the market closes which is 4pm New York Time (GMT-4).
+
+## Architecture
+The system is designed with durability (a fake SQS and a fake Elasticache using memcache), composability, high availability and real-time communication in mind.  The backend components are completely separate from the frontend and allows for interchangeability.
+The backend comprises of a producer which sends (last price) stock quotes (provided by Intrinio) to an SQS.  Consumers pull off this queue and posts the latest last price of a specific stock to a cache (memcached).  Stock specific servers running socket.io (operating over the websockets protocol) monitors the cache continuously and posts updates to connected clients when the timestamp of the last stock quote has changed.  Each front end client connects to a stock specific server and displays it to the user via the browser.
+
+## Fun facts
+I became an official contributor to the [Intrinio SDK](https://github.com/intrinio/intrinio-realtime-node-sdk/graphs/contributors) after making a change which allows clients to connect over a proxy.  I had to do this as it failed to work when I tried it in an office environment.
