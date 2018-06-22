@@ -6,7 +6,7 @@ Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (Team Cloud Lead @ 
 ## Pre-requisites 🔥
 * Docker account on dockerhub  
 * Docker  
-* [Node 8.11.3]
+* [Node 8.11.3](https://nodejs.org/en/download/)
 * A modern browser like Chrome
 
 ## Quick start 🍕
