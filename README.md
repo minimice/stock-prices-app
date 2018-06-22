@@ -54,7 +54,7 @@ docker-compose down
 to clean up.
 
 ## Running the tests
-1. Change directory to integration tests in a terminal.
+1. Change directory to integration-tests in a terminal.
 2. Run
 ```
 npm install
@@ -63,9 +63,12 @@ npm install
 ```
 npm run up
 ```
-to start docker-compose for the integration tests
+to start docker-compose for the integration tests.
+
 4. After all the services have started, which should take a few seconds, open up a new terminal window.
-5. Change directory to integration tests.
+
+5. Change directory to integration-tests.
+
 6. Run
 ```
 npm test
