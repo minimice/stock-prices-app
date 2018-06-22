@@ -1,0 +1,83 @@
+version: "3.3"
+services:
+  
+  # Infrastructure
+  memcached-test:
+    image: memcached:alpine
+    container_name: memcached-test
+    ports:
+     - "11211:11211"
+    entrypoint:
+    - memcached
+    - -m 128
+    - -v
+  sqs-test:
+    image: ohgo/sqs-local:latest
+    container_name: sqs-test
+    ports:
+      - "9324:9324"
+
+  # Frontend
+  spy-stock-price-client-test:
+    build: ../client
+    depends_on:
+      - spy-stock-price-server-test
+    image: local/stock-price-client:latest
+    container_name: spy-stock-price-client-test
+    ports:
+      - "6001:6000"
+    environment:
+      - PORT=6000
+      - SERVER=http://localhost:5001
+
+  # Backend
+  spy-stock-price-server-test:
+    build: ../server
+    depends_on:
+      - memcached-test
+    image: local/stock-price-server:latest
+    container_name: spy-stock-price-server-test
+    ports:
+      - "5001:5000"
+    environment:
+      - PORT=5000
+      - TICKERSYMBOL=SPY # Determines what stock ticker is shown by connecting front end clients
+      - CACHESERVER=memcached-test:11211
+
+  spy-stock-price-consumer-test:
+    build: ../stock-price-consumer
+    depends_on:
+      - memcached-test
+      - sqs-test
+    image: local/stock-price-consumer:latest
+    container_name: spy-stock-price-consumer-test
+    ports:
+      - "4001:4001"
+    environment:
+      - QUEUEURL=http://sqs-test:9324/queue/testqueue
+      - CACHESERVER=memcached-test:11211
+      - CACHEKEYLIFETIME=86400 # 2 days
+      - AWS_ACCESS_KEY_ID=dummyAccessId
+      - AWS_SECRET_ACCESS_KEY=dummyKey
+      - TICKERSYMBOL=SPY # Determines what stock ticker is handled by the consumer
+
+  stock-price-producer-test:
+    build: ../stock-price-producer
+    depends_on:
+      - sqs-test
+    image: local/stock-price-producer:latest
+    container_name: stock-price-producer-test
+    ports:
+      - "4000:4000"
+    environment:
+      - QUEUEURL=http://sqs-test:9324/queue/testqueue
+      # Replace these two lines here with your real time account information
+      # The following user/password does NOT allow you to access real time quotes
+      # so the application will not work as expected, contact me for
+      # information if you want to test or purchase a developer account from https://intrinio.com/
+      - INTRINIO_USER=0a470e3dce059a1754d638dd4fc604b5
+      - INTRINIO_PASSWORD=131d54732892174846e4813d9cfd2409     
+      ###################################
+      - AWS_ACCESS_KEY_ID=dummyAccessId
+      - AWS_SECRET_ACCESS_KEY=dummyKey
+      - TICKERSYMBOLS=SPY # Determines what stock tickers are handled by the producer      

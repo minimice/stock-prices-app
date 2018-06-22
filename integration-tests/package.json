@@ -1,0 +1,19 @@
+{
+  "name": "stock-prices-app-integration-test",
+  "version": "1.0.0",
+  "description": "Run the integration tests",
+  "main": "system.js",
+  "scripts": {
+    "test": "mocha . --timeout 10000",
+    "down": "docker-compose down --remove-orphans",
+    "up": "docker-compose up --build --remove-orphans --force-recreate"
+  },
+  "author": "Lim Chooi Guan",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.0",
+    "superagent": "^3.6.2",
+    "memcached": "^2.2.2"
+  }
+}
