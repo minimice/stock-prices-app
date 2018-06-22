@@ -1,0 +1,26 @@
+{
+  "name": "app-query",
+  "version": "1.0.0",
+  "description": "Stock price service",
+  "main": "app.js",
+  "dependencies": {
+    "aws-sdk": "^2.257.1",
+    "check-ticker-symbol": "^1.0.0",
+    "express": "^4.16.3",
+    "https": "^1.0.0",
+    "https-proxy-agent": "^2.2.1",
+    "intrinio-realtime": "^2.0.2",
+    "superagent": "^3.8.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:minimice/stock-prices-app.git"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lim, Chooi Guan",
+  "license": "ISC"
+}

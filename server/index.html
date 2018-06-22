@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Real time stock price app</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 25px Helvetica, Arial; }
+    </style>
+  </head>
+  <body>
+    <div id="stock">
+      <h1 id="symbol"></h1>
+      <h2 id="price"></h2>
+      <h3 id="change"></h3>
+      <h5 id="time1"></h5>
+      <h5 id="time"></h5>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <script>
+        $(function () {
+          var socket = io();
+          socket.on('update', function(msg){
+            $('#symbol').text(msg.ticker);
+            $('#price').text("$" + msg.price.toFixed(2));
+            var diff = msg.change.toFixed(3);
+            var change = (diff > 0 ? '+' : '') + diff;
+            $('#change').text(change + " since last price change");
+            $('#time').text("As of " + moment(msg.timestamp*1000).format('MMMM Do YYYY, h:mm:ssa'));
+          });
+        });
+    </script>
+  </body>
+</html>
