@@ -1,6 +1,8 @@
 # stock-prices-app 📈
 Real time streaming stock prices using the Intrinio SDK built using distributed architecture.
 
+![Real time streaming! Awesome!](https://raw.githubusercontent.com/minimice/stock-prices-app/master/demo.gif)
+
 Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (Team Cloud Lead @ Scania AB, Senior Software Engineer)
 
 ## Pre-requisites 🔥
