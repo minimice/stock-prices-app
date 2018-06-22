@@ -1,4 +1,4 @@
-# stock-prices-app
+# stock-prices-app 📈
 Real time streaming stock prices using the Intrinio SDK built using distributed architecture.
 
 Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (Team Cloud Lead @ Scania AB, Senior Software Engineer)
@@ -10,14 +10,14 @@ Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (Team Cloud Lead @ 
 * A modern browser like Chrome
 
 ## Quick start 🍕
-1. Contact [me](https://www.linkedin.com/in/cgl88/) to get an Intrinio account to work with live quotes, you will need this to update the Docker-compose file.
+1. Clone this repo.  Contact [me](https://www.linkedin.com/in/cgl88/) to get an Intrinio account to work with live quotes, you will need this to update the Docker-compose file.
 2. Update the Docker-compose file with credentials.
 ```
 ## Update the following two lines in the Docker-compose file ##
 - INTRINIO_USER=YOUR_USER_HERE
 - INTRINIO_PASSWORD=YOUR_PASSWORD_HERE
 ```
-3. Run the following command from the root directory of the repo.
+3. Run the following command from the root directory of the repo in your favourite terminal.
 ```
 docker-compose up --build
 ```
@@ -45,7 +45,13 @@ to see the stock ticker symbol SPY.  Also navigate to
 http://localhost:6002
 ```
 to see the stock ticker symbol BX (Blackstone).  
-6. Enjoy watching streaming quotes 🎉 until the market closes which is 4pm New York Time (GMT-4).
+6. Enjoy watching streaming quotes 🎉 until the market closes which is 4pm New York Time (GMT-4).  
+7. Press Ctrl+C in the terminal to stop docker-compose when you're happy enough.  
+8. Run
+```
+docker-compose down
+```
+to clean up.
 
 ## Architecture 🏛
 The system is designed with durability (a fake SQS and a fake Elasticache using memcache), composability, high availability and real-time communication in mind.  The backend components are completely separate from the frontend and allows for interchangeability.
