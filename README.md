@@ -6,7 +6,7 @@ Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (Team Cloud Lead @ 
 ## Pre-requisites 🔥
 * Docker account on dockerhub  
 * Docker  
-* Node
+* [Node 8.11.3]
 * A modern browser like Chrome
 
 ## Quick start 🍕
@@ -36,11 +36,11 @@ spy-stock-price-server
 sqs
 memcached
 ```
-5. If the stock markets have open, you should get streaming quotes.  If not check that your Intrinio account details are correct, and then run the Docker-compose file again.  Navigate to
+5. If the stock markets have open, you should get streaming quotes.  If not check that your Intrinio account details are correct, and then run the Docker-compose file again.  In your browser, navigate to
 ```
 http://localhost:6001
 ```
-to see the stock ticker symbol SPY.  Navigate to
+to see the stock ticker symbol SPY.  Also navigate to
 ```
 http://localhost:6002
 ```
