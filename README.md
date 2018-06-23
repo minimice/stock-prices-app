@@ -96,7 +96,7 @@ to clean up.
 The system is designed with durability (a fake SQS and a fake Elasticache using memcache), composability, high availability and real-time communication in mind.  The backend components are completely separate from the frontend and allows for interchangeability.
 The backend comprises of a producer which sends (last price) stock quotes (provided by Intrinio) to an SQS.  Consumers pull off this queue and posts the latest last price of a specific stock to a cache (memcached).  Stock specific servers running socket.io (operating over the websockets protocol) monitors the cache continuously and posts updates to connected clients when the timestamp of the last stock quote has changed.  Each front end client connects to a stock specific server and displays it to the user via the browser.
 
-## Demos
+## Demos 🏖
 The client re-establishes the connection to the server automatically when disconnected.
 
 ![Reconnection! Awesome!](https://raw.githubusercontent.com/minimice/stock-prices-app/master/demos/connectiondemo.gif)
