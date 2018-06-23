@@ -14,5 +14,17 @@ $(function () {
       $('#change').text(change + " since last price change");
       $('#time').text("As of " + moment(msg.timestamp*1000).format('MMMM Do YYYY, h:mm:ssa'));
     });
+    socket.on('disconnect', function(reason) {
+      $('#status').fadeOut(500, () => {
+        $('#status').text("🚨Currently offline.  Live quotes will show when a connection is re-established.");
+        $('#status').fadeIn();
+      });
+    });
+    socket.on('connect', function() {
+      $('#status').fadeOut(500, () => {
+        $('#status').text("⚡️Connected to live server.");
+        $('#status').fadeIn();
+      });
+    })
   });
 });
