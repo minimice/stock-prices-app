@@ -94,7 +94,7 @@ npm run down
 to clean up.
 
 ## Architecture 🏛
-The system is designed with durability (a fake SQS and a fake Elasticache using memcache), composability (using microservices deployed in containers), high availability (by deploying multiple instances of services and/or a load balancer in front of the services if required) and real-time communication (using websockets) in mind.  The backend components are completely separate from the frontend and allows for interchangeability.  The following architecture diagram displays the flow of data and components deployed when the Docker-compose file is executed.
+The system is designed with durability (a fake SQS and a fake Elasticache using memcached), composability (using microservices deployed in containers), high availability (by deploying multiple instances of services and/or a load balancer in front of the services if required) and real-time communication (using websockets) in mind.  The backend components are completely separate from the frontend and allows for interchangeability.  The following architecture diagram displays the flow of data and components deployed when the Docker-compose file is executed.
 
 ![Awesome!](https://raw.githubusercontent.com/minimice/stock-prices-app/master/docs/architecture.png)
 
