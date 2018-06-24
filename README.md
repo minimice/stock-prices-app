@@ -5,7 +5,7 @@ Real time streaming stock prices using the Intrinio SDK built using distributed 
 
 Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (Team Cloud Lead @ Scania AB, Senior Software Engineer)
 
-## Pre-requisites 🔥
+## Pre-requisites 🛠
 * Docker account on dockerhub  
 * Docker  
 * [Node 8.11.3](https://nodejs.org/en/download/)
@@ -28,7 +28,7 @@ docker-compose up --build
 ```
 docker ps
 ```
-You should now see 8 containers running.  These are
+You should now see 9 containers running.  These are
 ```
 spy-stock-price-client
 bx-stock-price-client
@@ -36,6 +36,7 @@ bx-stock-price-consumer
 spy-stock-price-consumer
 bx-stock-price-server
 spy-stock-price-server
+stock-price-producer
 sqs
 memcached
 ```
@@ -103,6 +104,12 @@ The backend comprises of a producer which sends (last price) stock quotes (provi
 The client re-establishes the connection to the server automatically when disconnected without any user intervention.
 
 ![Reconnection! Awesome!](https://raw.githubusercontent.com/minimice/stock-prices-app/master/demos/connectiondemo.gif)
+
+## Technology stack
+* Socket I/O for backend and frontend
+* Node.js for backend services
+* jQuery and bootstrap for the frontend
+* Docker
 
 ## Fun facts 🍄🤪
 I became an official contributor to the [Intrinio SDK](https://github.com/intrinio/intrinio-realtime-node-sdk/graphs/contributors) after making a change which allows clients to connect over a proxy.  I had to do this as it failed to work when I tried it in an office environment.  After adding the change I requested for a one month trial which gave me access to streaming quotes!
