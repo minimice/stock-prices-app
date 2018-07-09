@@ -111,5 +111,8 @@ The client re-establishes the connection to the server automatically when discon
 * jQuery and bootstrap for the frontend
 * Docker
 
+## Additional improvements
+Add [Consul](https://www.consul.io/intro/index.html) as a service discovery layer in front of the front end for example.  Multiple stock quote clients (consul agents) can be registered with the a consul server.  For example I can have two stock quote clients (The reason for having N > 1 is to provide high availability) for SPY registered with the consul server, and have the front end be registered as localhost/spy instead of localhost:6001.  In the event that one stock quote client stops working, the other stock quote client will return a valid response.
+
 ## Fun facts 🍄🤪
 I became an official contributor to the [Intrinio SDK](https://github.com/intrinio/intrinio-realtime-node-sdk/graphs/contributors) after making a change which allows clients to connect over a proxy.  I had to do this as it failed to work when I tried it in an office environment.  After adding the change I requested for a one month trial which gave me access to streaming quotes!
