@@ -118,6 +118,19 @@ To see port bindings from the container (e.g. bx-stock-price-consumer) to the ho
 ```
 docker inspect --format='{{json .NetworkSettings.Ports}}' bx-stock-price-consumer
 ```
+With docker-compose running, open a terminal and run
+```
+docker exec -it sqs /bin/bash
+```
+You are now in the sqs container.  Do something fancy like a ping!  Run the following command
+```
+ping memcached
+```
+You should get a response from the memcached image.  Ah... the magic of built in DNS resolution in docker-compose.  Note that bash shell is present in all the containers, except for memcached.  For memcached you can use the regular sh command, i.e. at /bin/sh.  After you are done with playing around, run
+```
+exit
+```
+to exit from the sqs container.
 
 ## Technology stack
 * Socket I/O for backend and frontend
