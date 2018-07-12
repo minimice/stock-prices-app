@@ -105,6 +105,16 @@ The client re-establishes the connection to the server automatically when discon
 
 ![Reconnection! Awesome!](https://raw.githubusercontent.com/minimice/stock-prices-app/master/demos/connectiondemo.gif)
 
+## Docker fun 🐳
+When you start up docker-compose, open up a separate terminal.  You can inspect each running container.  For example, to inspect the spy-stock-price-client container, run
+```
+docker inspect spy-stock-price-client
+```
+you will get some detailed output of what is happening in the container!  To retrieve health details of the running container, run
+```
+docker inspect --format='{{json .State.Health.Status}}' spy-stock-price-client
+```
+
 ## Technology stack
 * Socket I/O for backend and frontend
 * Node.js for backend services
