@@ -5,6 +5,16 @@ services:
   memcached:
     image: memcached:alpine
     container_name: memcached
+    healthcheck:
+      # This command is run internally within the memcached container
+      # that is why we are pointing towards port 11211
+      # use netcat (nc) in this container, to test run
+      # -- docker exec -it memcached /bin/sh
+      # then run the following line
+      test: nc -z 127.0.0.1 11211 || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 3
     ports:
      - "11211:11211"
     entrypoint:
@@ -14,6 +24,17 @@ services:
   sqs:
     image: ohgo/sqs-local:latest
     container_name: sqs
+    healthcheck:
+      # This command is run internally within the sqs container
+      # that is why we are pointing towards port 9324
+      # curl is already present in this image
+      # to test this in the running container, run
+      # -- docker exec -it sqs /bin/bash
+      # then run the following line
+      test: curl -p 127.0.0.1:9324 || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 3
     ports:
       - "9324:9324"
 
