@@ -16,7 +16,10 @@ WORKDIR /usr/src/app
 COPY package.json .
 
 # skip red stdout texts, do not install devDependencies
-RUN npm install --loglevel warn --production
+# adding curl for health check in Docker-compose
+RUN npm install --loglevel warn --production && \
+	apk update && \
+	apk add curl
 
 COPY . .
 
