@@ -114,6 +114,10 @@ you will get some detailed output of what is happening in the container!  To ret
 ```
 docker inspect --format='{{json .State.Health.Status}}' spy-stock-price-client
 ```
+To see port bindings from the container (e.g. bx-stock-price-consumer) to the host, run
+```
+docker inspect --format='{{json .NetworkSettings.Ports}}' bx-stock-price-consumer
+```
 
 ## Technology stack
 * Socket I/O for backend and frontend
