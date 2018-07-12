@@ -22,6 +22,13 @@ services:
     build: ./client
     depends_on:
       - spy-stock-price-server
+    healthcheck:
+      # This command is run internally within the spy-stock-price-client container
+      # that is why we are pointing towards port 6000
+      test: curl -p 127.0.0.1:6000/api/monitoring/ping || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 3
     image: local/stock-price-client:latest
     container_name: spy-stock-price-client
     ports:
@@ -34,6 +41,13 @@ services:
     build: ./client
     depends_on:
       - bx-stock-price-server
+    healthcheck:
+      # This command is run internally within the bx-stock-price-client container
+      # that is why we are pointing towards port 6000
+      test: curl -p 127.0.0.1:6000/api/monitoring/ping || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 3
     image: local/stock-price-client:latest
     container_name: bx-stock-price-client
     ports:
@@ -47,6 +61,13 @@ services:
     build: ./server
     depends_on:
       - memcached
+    healthcheck:
+      # This command is run internally within the spy-stock-price-server container
+      # that is why we are pointing towards port 5000
+      test: curl -p 127.0.0.1:5000/api/monitoring/ping || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 3
     image: local/stock-price-server:latest
     container_name: spy-stock-price-server
     ports:
@@ -60,6 +81,13 @@ services:
     build: ./server
     depends_on:
       - memcached
+    healthcheck:
+      # This command is run internally within the bx-stock-price-server container
+      # that is why we are pointing towards port 5000
+      test: curl -p 127.0.0.1:5000/api/monitoring/ping || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 3
     image: local/stock-price-server:latest
     container_name: bx-stock-price-server
     ports:
@@ -74,6 +102,14 @@ services:
     depends_on:
       - memcached
       - sqs
+    healthcheck:
+      # This command is run internally within the spy-stock-price-consumer container
+      # that is why we are pointing towards port 4001
+      test: curl -p 127.0.0.1:4001/api/monitoring/ping || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 3
+    image: local/stock-price-server:latest
     image: local/stock-price-consumer:latest
     container_name: spy-stock-price-consumer
     ports:
@@ -91,6 +127,13 @@ services:
     depends_on:
       - memcached
       - sqs
+    healthcheck:
+      # This command is run internally within the spy-stock-price-consumer container
+      # that is why we are pointing towards port 4001
+      test: curl -p 127.0.0.1:4001/api/monitoring/ping || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 3
     image: local/stock-price-consumer:latest
     container_name: bx-stock-price-consumer
     ports:
@@ -107,6 +150,13 @@ services:
     build: ./stock-price-producer
     depends_on:
       - sqs
+    healthcheck:
+      # This command is run internally within the stock-price-producer container
+      # that is why we are pointing towards port 4000
+      test: curl -p 127.0.0.1:4000/api/monitoring/ping || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 3
     image: local/stock-price-producer:latest
     container_name: stock-price-producer
     ports:
