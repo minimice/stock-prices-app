@@ -49,6 +49,8 @@ services:
     depends_on:
       - memcached-test
       - sqs-test
+    # Wait for sqs to start before starting node
+    command: sh -c './utilities/wait-for-it.sh sqs-test:9324 -- node index.js'
     image: local/stock-price-consumer:latest
     container_name: spy-stock-price-consumer-test
     ports:
@@ -65,6 +67,8 @@ services:
     build: ../stock-price-producer
     depends_on:
       - sqs-test
+    # Wait for sqs to start before starting node
+    command: sh -c './utilities/wait-for-it.sh sqs-test:9324 -- node index.js'
     image: local/stock-price-producer:latest
     container_name: stock-price-producer-test
     ports:
