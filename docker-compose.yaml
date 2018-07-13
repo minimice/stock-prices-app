@@ -123,6 +123,8 @@ services:
     depends_on:
       - memcached
       - sqs
+    # Wait for sqs to start before starting node
+    command: sh -c './utilities/wait-for-it.sh sqs:9324 -- node index.js'
     healthcheck:
       # This command is run internally within the spy-stock-price-consumer container
       # that is why we are pointing towards port 4001
@@ -148,6 +150,8 @@ services:
     depends_on:
       - memcached
       - sqs
+    # Wait for sqs to start before starting node
+    command: sh -c './utilities/wait-for-it.sh sqs:9324 -- node index.js'
     healthcheck:
       # This command is run internally within the spy-stock-price-consumer container
       # that is why we are pointing towards port 4001
@@ -171,6 +175,8 @@ services:
     build: ./stock-price-producer
     depends_on:
       - sqs
+    # Wait for sqs to start before starting node
+    command: sh -c './utilities/wait-for-it.sh sqs:9324 -- node index.js'
     healthcheck:
       # This command is run internally within the stock-price-producer container
       # that is why we are pointing towards port 4000
