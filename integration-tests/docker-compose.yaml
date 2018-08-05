@@ -12,7 +12,7 @@ services:
     - -m 128
     - -v
   sqs-test:
-    image: ohgo/sqs-local:latest
+    image: minimice/sqs-local:latest
     container_name: sqs-test
     ports:
       - "9324:9324"
