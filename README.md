@@ -3,7 +3,7 @@ Real time streaming stock prices using the Intrinio SDK built using distributed 
 
 ![Real time streaming! Awesome!](https://raw.githubusercontent.com/minimice/stock-prices-app/master/demos/demo.gif)
 
-Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (Team Cloud Lead @ Scania AB, Senior Software Engineer)
+Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (Team Cloud Lead @ Scania AB, [AWS Certified Solutions Architect](https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2018-11-08&ci=AWS00446559&dm=80))
 
 ## Pre-requisites 🛠
 * Docker account on dockerhub  
