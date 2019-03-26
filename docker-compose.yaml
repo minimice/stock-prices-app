@@ -132,7 +132,6 @@ services:
       interval: 1m
       timeout: 10s
       retries: 3
-    image: local/stock-price-server:latest
     image: local/stock-price-consumer:latest
     container_name: spy-stock-price-consumer
     ports:
