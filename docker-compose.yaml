@@ -139,7 +139,7 @@ services:
     environment:
       - QUEUEURL=http://sqs:9324/queue/testqueue
       - CACHESERVER=memcached:11211
-      - CACHEKEYLIFETIME=86400 # 2 days
+      - CACHEKEYLIFETIME=172800 # 2 days
       - AWS_ACCESS_KEY_ID=dummyAccessId
       - AWS_SECRET_ACCESS_KEY=dummyKey
       - TICKERSYMBOL=SPY # Determines what stock ticker is handled by the consumer
@@ -165,7 +165,7 @@ services:
     environment:
       - QUEUEURL=http://sqs:9324/queue/testqueue
       - CACHESERVER=memcached:11211
-      - CACHEKEYLIFETIME=86400 # 2 days
+      - CACHEKEYLIFETIME=172800 # 2 days
       - AWS_ACCESS_KEY_ID=dummyAccessId
       - AWS_SECRET_ACCESS_KEY=dummyKey
       - TICKERSYMBOL=BX # Determines what stock ticker is handled by the consumer
